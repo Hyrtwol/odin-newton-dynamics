@@ -5,9 +5,9 @@ USE_GLSL :: #config(NEWTON_USE_USE_GLSL, true)
 
 _NEWTON_USE_DOUBLE :: #config(_NEWTON_USE_DOUBLE, false)
 
-import "core:math/linalg"
+//import "core:math/linalg"
 import glm "core:math/linalg/glsl"
-import _c "core:c"
+//import _c "core:c"
 
 when _NEWTON_USE_DOUBLE {
 	dFloat :: f64
