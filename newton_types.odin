@@ -5,7 +5,7 @@ USE_GLSL :: #config(NEWTON_USE_USE_GLSL, true)
 
 _NEWTON_USE_DOUBLE :: #config(_NEWTON_USE_DOUBLE, false)
 
-//import "core:math/linalg"
+import "core:math/linalg"
 import glm "core:math/linalg/glsl"
 //import _c "core:c"
 
@@ -31,6 +31,7 @@ when USE_LINALG {
 		quaternion :: linalg.Quaternionf32
 		float4x4 :: linalg.Matrix4x4f32
 	}
+	identity :: linalg.identity
 } else when USE_GLSL {
 	int2 :: glm.ivec2
 	int3 :: glm.ivec3
@@ -47,16 +48,20 @@ when USE_LINALG {
 		quaternion :: glm.quat
 		float4x4   :: glm.mat4x4
 	}
+	identity :: glm.identity
+	_ :: linalg // :/
 } else {
-	int2 :: distinct [2]i32
-	int3 :: distinct [3]i32
-	float2 :: distinct [2]dFloat
-	float3 :: distinct [3]dFloat
-	float4 :: distinct [4]dFloat
-	float4x4 :: distinct matrix[4, 4]dFloat
+	int2 :: [2]i32
+	int3 :: [3]i32
+	float2 :: [2]dFloat
+	float3 :: [3]dFloat
+	float4 :: [4]dFloat
+	float4x4 :: matrix[4, 4]dFloat
 	when _NEWTON_USE_DOUBLE {
-		quaternion :: distinct quaternion256
+		quaternion :: quaternion256
 	} else {
-		quaternion :: distinct quaternion128
+		quaternion :: quaternion128
 	}
+	_ :: linalg // :/
+	_ :: glm // :/
 }

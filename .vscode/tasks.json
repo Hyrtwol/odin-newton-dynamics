@@ -1,0 +1,100 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "odin run",
+			"type": "process",
+			"command": "odin",
+			"args": [
+				"run",
+				"..\\${relativeFileDirname}",
+				"-collection:shared=..\\shared",
+				"-vet",
+				"-strict-style"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": "**/*.odin"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/bin"
+			}
+		},
+		{
+			"label": "odin build",
+			"type": "process",
+			"command": "odin",
+			"args": [
+				"build",
+				"..\\${relativeFileDirname}",
+				"-collection:shared=..\\shared"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/bin"
+			}
+		},
+		{
+			"label": "odin test",
+			"type": "shell",
+			"command": "odin",
+			"args": [
+				"test",
+				"..\\${relativeFileDirname}",
+				"-collection:shared=..\\shared"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/bin"
+			}
+		},
+		{
+			"label": "odin debug build",
+			"type": "process",
+			"command": "odin",
+			"args": [
+				"build",
+				"..\\${relativeFileDirname}",
+				"-collection:shared=..\\shared",
+				"-debug"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/bin"
+			}
+		},
+		{
+			"label": "odin check",
+			"type": "process",
+			"command": "odin",
+			"args": [
+				"check",
+				"..\\${relativeFileDirname}",
+				"-collection:shared=..\\shared",
+				"-no-entry-point",
+				"-vet"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/bin"
+			}
+		}
+	]
+}
