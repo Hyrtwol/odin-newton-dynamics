@@ -2,7 +2,7 @@ package test_newton
 
 import "core:fmt"
 import "core:testing"
-import "../shared/ounit"
+import "shared:ounit"
 import n ".."
 
 expect_size :: ounit.expect_size
