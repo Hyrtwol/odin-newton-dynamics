@@ -83,9 +83,9 @@ size_of_NewtonJointRecord_2 :: proc(t: ^testing.T) {
 		m_maxAngularDof:     n.float3,
 		// m_attachBody_0:      ^n.NewtonBody,
 		// m_attachBody_1:      ^n.NewtonBody,
-	// 	m_extraParameters:   [64]n.dFloat,
-	// 	m_bodiesCollisionOn: i32,
-	// 	m_descriptionType:   [128]n.u8,
+		// m_extraParameters:   [64]n.dFloat,
+		// m_bodiesCollisionOn: i32,
+		// m_descriptionType:   [128]n.u8,
 	}
 	//exp := 608
 	exp :=
