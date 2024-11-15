@@ -346,7 +346,7 @@ foreign newton {
 	SetParallelSolverOnLargeIsland :: proc(newtonWorld: ^NewtonWorld, mode: i32) ---
 	GetParallelSolverOnLargeIsland :: proc(newtonWorld: ^NewtonWorld) -> i32 ---
 	GetBroadphaseAlgorithm :: proc(newtonWorld: ^NewtonWorld) -> BroadPhaseType ---
-	SelectBroadphaseAlgorithm :: proc(newtonWorld: ^NewtonWorld, algorithmType: i32) ---
+	SelectBroadphaseAlgorithm :: proc(newtonWorld: ^NewtonWorld, algorithmType: BroadPhaseType) ---
 	ResetBroadphase :: proc(newtonWorld: ^NewtonWorld) ---
 	Update :: proc(newtonWorld: ^NewtonWorld, timestep: dFloat) ---
 	UpdateAsync :: proc(newtonWorld: ^NewtonWorld, timestep: dFloat) ---
