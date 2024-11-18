@@ -9,6 +9,7 @@ when _NEWTON_USE_DOUBLE {
 }
 
 int3 :: [3]i32
+float2 :: [2]dFloat
 float3 :: [3]dFloat
 float4 :: [4]dFloat
 float4x4 :: matrix[4, 4]dFloat

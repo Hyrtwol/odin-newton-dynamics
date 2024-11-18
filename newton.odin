@@ -315,6 +315,10 @@ MaterialData :: struct #raw_union {
 	m_float: dFloat,
 }
 
+Face :: distinct rawptr
+Edge :: distinct rawptr
+Point :: distinct rawptr
+
 @(default_calling_convention = "c", link_prefix = "Newton")
 foreign newton {
 	@(link_name = "NewtonWorldGetVersion")
@@ -779,17 +783,17 @@ foreign newton {
 	MeshGetPointCount :: proc(mesh: ^Mesh) -> i32 ---
 	MeshGetIndexToVertexMap :: proc(mesh: ^Mesh) -> ^i32 ---
 	MeshGetVertexDoubleChannel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^f64) ---
-	MeshGetVertexChannel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^dFloat) ---
-	MeshGetNormalChannel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^dFloat) ---
-	MeshGetBinormalChannel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^dFloat) ---
-	MeshGetUV0Channel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^dFloat) ---
-	MeshGetUV1Channel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^dFloat) ---
+	MeshGetVertexChannel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^float3) ---
+	MeshGetNormalChannel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^float3) ---
+	MeshGetBinormalChannel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^float3) ---
+	MeshGetUV0Channel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^float2) ---
+	MeshGetUV1Channel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^float2) ---
 	MeshGetVertexColorChannel :: proc(mesh: ^Mesh, vertexStrideInByte: i32, outBuffer: ^dFloat) ---
-	MeshHasNormalChannel :: proc(mesh: ^Mesh) -> i32 ---
-	MeshHasBinormalChannel :: proc(mesh: ^Mesh) -> i32 ---
-	MeshHasUV0Channel :: proc(mesh: ^Mesh) -> i32 ---
-	MeshHasUV1Channel :: proc(mesh: ^Mesh) -> i32 ---
-	MeshHasVertexColorChannel :: proc(mesh: ^Mesh) -> i32 ---
+	MeshHasNormalChannel :: proc(mesh: ^Mesh) -> b32 ---
+	MeshHasBinormalChannel :: proc(mesh: ^Mesh) -> b32 ---
+	MeshHasUV0Channel :: proc(mesh: ^Mesh) -> b32 ---
+	MeshHasUV1Channel :: proc(mesh: ^Mesh) -> b32 ---
+	MeshHasVertexColorChannel :: proc(mesh: ^Mesh) -> b32 ---
 	MeshBeginHandle :: proc(mesh: ^Mesh) -> rawptr ---
 	MeshEndHandle :: proc(mesh: ^Mesh, handle: rawptr) ---
 	MeshFirstMaterial :: proc(mesh: ^Mesh, handle: rawptr) -> i32 ---
@@ -813,20 +817,20 @@ foreign newton {
 	MeshGetFirstVertex :: proc(mesh: ^Mesh) -> rawptr ---
 	MeshGetNextVertex :: proc(mesh: ^Mesh, vertex: rawptr) -> rawptr ---
 	MeshGetVertexIndex :: proc(mesh: ^Mesh, vertex: rawptr) -> i32 ---
-	MeshGetFirstPoint :: proc(mesh: ^Mesh) -> rawptr ---
-	MeshGetNextPoint :: proc(mesh: ^Mesh, point: rawptr) -> rawptr ---
-	MeshGetPointIndex :: proc(mesh: ^Mesh, point: rawptr) -> i32 ---
-	MeshGetVertexIndexFromPoint :: proc(mesh: ^Mesh, point: rawptr) -> i32 ---
-	MeshGetFirstEdge :: proc(mesh: ^Mesh) -> rawptr ---
-	MeshGetNextEdge :: proc(mesh: ^Mesh, edge: rawptr) -> rawptr ---
-	MeshGetEdgeIndices :: proc(mesh: ^Mesh, edge: rawptr, v0: ^i32, v1: ^i32) ---
-	MeshGetFirstFace :: proc(mesh: ^Mesh) -> rawptr ---
-	MeshGetNextFace :: proc(mesh: ^Mesh, face: rawptr) -> rawptr ---
-	MeshIsFaceOpen :: proc(mesh: ^Mesh, face: rawptr) -> i32 ---
-	MeshGetFaceMaterial :: proc(mesh: ^Mesh, face: rawptr) -> i32 ---
-	MeshGetFaceIndexCount :: proc(mesh: ^Mesh, face: rawptr) -> i32 ---
-	MeshGetFaceIndices :: proc(mesh: ^Mesh, face: rawptr, indices: ^i32) ---
-	MeshGetFacePointIndices :: proc(mesh: ^Mesh, face: rawptr, indices: ^i32) ---
-	MeshCalculateFaceNormal :: proc(mesh: ^Mesh, face: rawptr, normal: ^f64) ---
-	MeshSetFaceMaterial :: proc(mesh: ^Mesh, face: rawptr, matId: i32) ---
+	MeshGetFirstPoint :: proc(mesh: ^Mesh) -> Point ---
+	MeshGetNextPoint :: proc(mesh: ^Mesh, point: Point) -> Point ---
+	MeshGetPointIndex :: proc(mesh: ^Mesh, point: Point) -> i32 ---
+	MeshGetVertexIndexFromPoint :: proc(mesh: ^Mesh, point: Point) -> i32 ---
+	MeshGetFirstEdge :: proc(mesh: ^Mesh) -> Edge ---
+	MeshGetNextEdge :: proc(mesh: ^Mesh, edge: Edge) -> Edge ---
+	MeshGetEdgeIndices :: proc(mesh: ^Mesh, edge: Edge, v0: ^i32, v1: ^i32) ---
+	MeshGetFirstFace :: proc(mesh: ^Mesh) -> Face ---
+	MeshGetNextFace :: proc(mesh: ^Mesh, face: Face) -> Face ---
+	MeshIsFaceOpen :: proc(mesh: ^Mesh, face: Face) -> b32 ---
+	MeshGetFaceMaterial :: proc(mesh: ^Mesh, face: Face) -> i32 ---
+	MeshGetFaceIndexCount :: proc(mesh: ^Mesh, face: Face) -> i32 ---
+	MeshGetFaceIndices :: proc(mesh: ^Mesh, face: Face, indices: ^i32) ---
+	MeshGetFacePointIndices :: proc(mesh: ^Mesh, face: Face, indices: ^i32) ---
+	MeshCalculateFaceNormal :: proc(mesh: ^Mesh, face: Face, normal: ^f64) ---
+	MeshSetFaceMaterial :: proc(mesh: ^Mesh, face: Face, matId: i32) ---
 }
